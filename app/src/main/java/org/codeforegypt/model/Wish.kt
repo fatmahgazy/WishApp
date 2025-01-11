@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Entity(tableName = "MyWishes")
 data class Wish(
     @PrimaryKey(autoGenerate = true)
-    val id: Long?,
+    val id: Long? = null,
     @ColumnInfo("WishTitle")
     val title: String,
     @ColumnInfo("WishDescription")

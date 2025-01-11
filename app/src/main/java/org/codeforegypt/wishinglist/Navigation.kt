@@ -35,7 +35,7 @@ fun Navigation(
             nullable = false
         })
         ) { entry ->
-            val id  = if (entry.arguments != null) entry.arguments!!.getLong("id") else 0L
+            val id  = entry.arguments?.getLong("id") ?: 0L
             AddEditView(
                 id = id,
                 navController,

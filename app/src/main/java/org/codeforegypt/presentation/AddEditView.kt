@@ -1,5 +1,6 @@
 package org.codeforegypt.presentation
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -45,6 +46,7 @@ fun AddEditView(
     val titleText = remember { mutableStateOf(R.string.add_Wish) }
     val wish = viewModel.getWishById(id).collectAsState(initial = Wish(0L, "", "")).value
     LaunchedEffect(key1 = id) {
+        Log.d("AddEditView", "id: $id")
         if (id != 0L) {
             viewModel.wishTitleState = wish.title
             viewModel.wishDescriptionState = wish.description
@@ -109,7 +111,6 @@ fun AddEditView(
                         //add wish
                         viewModel.addWish(
                             Wish(
-                                id= 0L,
                                 title = viewModel.wishTitleState,
                                 description = viewModel.wishDescriptionState
 
