@@ -40,11 +40,12 @@ import org.codeforegypt.model.Wish
 fun AddEditView(
     id: Long,
     navController: NavController,
- viewModel : WishViewModel
+    viewModel : WishViewModel
 
 ) {
     val titleText = remember { mutableStateOf(R.string.add_Wish) }
     val wish = viewModel.getWishById(id).collectAsState(initial = Wish(0L, "", "")).value
+
     LaunchedEffect(key1 = id) {
         Log.d("AddEditView", "id: $id")
         if (id != 0L) {
@@ -125,6 +126,7 @@ fun AddEditView(
                 scope.launch {
                     scaffoldState.snackbarHostState.showSnackbar(snackMessage.value)
                 }
+
                 navController.navigateUp()
             }) {
                 Text(
@@ -153,8 +155,3 @@ fun WishTextFiled(
     }
 }
 
-@Preview(showBackground = true , showSystemUi =  true)
-@Composable
-private fun WishPreview() {
-
-}

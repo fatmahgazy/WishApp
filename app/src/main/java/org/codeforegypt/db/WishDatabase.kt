@@ -1,6 +1,4 @@
 package org.codeforegypt.db
-
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import org.codeforegypt.model.Wish

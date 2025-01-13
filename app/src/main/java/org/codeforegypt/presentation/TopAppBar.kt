@@ -37,8 +37,6 @@ fun AppBar(
                 )
             }
 
-        }else{
-            null
         }
 
     }

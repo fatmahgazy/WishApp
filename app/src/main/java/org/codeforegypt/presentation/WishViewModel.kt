@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.codeforegypt.db.Graph
 import org.codeforegypt.model.Wish
@@ -31,6 +32,10 @@ class WishViewModel(
             wishRepo.addWish(addAWish)
         }
     }
+    fun resetWish(){
+       wishTitleState = ""
+       wishDescriptionState = ""
+    }
     fun deleteWish(deleteWish: Wish){
         viewModelScope.launch {
             wishRepo.delete(deleteWish)
@@ -43,5 +48,11 @@ class WishViewModel(
     }
     fun getWishById(wishId: Long): Flow<Wish>{
             return wishRepo.getWishById(wishId)
+                .onEach {
+                   if(wishId != 0L){
+                       wishTitleState = it.title
+                       wishDescriptionState = it.description
+                   }
+                }
     }
 }
